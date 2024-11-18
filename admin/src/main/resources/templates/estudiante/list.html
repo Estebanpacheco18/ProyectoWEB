@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Estudiantes</title>
+</head>
+<body>
+    <h1>Lista de Estudiantes</h1>
+
+    <a href="/estudiantes/nuevo">Crear Nuevo Estudiante</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Nivel</th>
+                <th>Sección</th>  <!-- Columna de Sección -->
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="estudiante : ${estudiantes}">
+                <td th:text="${estudiante.id}"></td>
+                <td th:text="${estudiante.nombre}"></td>
+                <td th:text="${estudiante.edad}"></td>
+                <td th:text="${estudiante.nivel}"></td>
+                <td th:text="${estudiante.seccion != null ? estudiante.seccion: 'Sin sección'}"></td>  <!-- Nombre de la Sección -->
+                <td>
+                    <a th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}">Editar</a>
+                    <a th:href="@{/estudiantes/eliminar/{id}(id=${estudiante.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

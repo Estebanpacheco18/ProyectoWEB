@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Actividades</title>
+</head>
+<body>
+    <h1>Lista de Actividades</h1>
+
+    <a href="/actividades/nueva">Crear Nueva Actividad</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Sección</th>  <!-- Columna de Sección -->
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="actividad : ${actividades}">
+                <td th:text="${actividad.id}"></td>
+                <td th:text="${actividad.nombre}"></td>
+                <td th:text="${actividad.descripcion}"></td>
+                <td th:text="${actividad.fecha}"></td>
+                <td th:text="${actividad.seccion.nombre}"></td>  <!-- Nombre de la Sección -->
+                <td>
+                    <a th:href="@{/actividades/editar/{id}(id=${actividad.id})}">Editar</a>
+                    <a th:href="@{/actividades/eliminar/{id}(id=${actividad.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

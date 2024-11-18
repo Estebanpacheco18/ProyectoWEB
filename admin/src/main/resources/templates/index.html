@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Administrativa - AlphaKid</title>
+</head>
+<body>
+    <h1>Bienvenido a AlphaKid Dashboard</h1>
+
+    <!-- Mostrar el nombre de usuario si está autenticado -->
+    <div>
+        <p>Usuario autenticado: <span th:text="${user.username}">Nombre del usuario</span></p>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/estudiantes">Estudiantes</a></li>
+            <li><a href="/actividades">Actividades</a></li>
+            <li><a href="/progreso">Progreso</a></li>
+        </ul>
+    </nav>
+
+    <!-- Enlace para cerrar sesión -->
+    <a href="/logout">Cerrar sesión</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${actividad.id == null ? 'Crear Actividad' : 'Editar Actividad'}"></title>
+</head>
+<body>
+    <h1 th:text="${actividad.id == null ? 'Crear Actividad' : 'Editar Actividad'}"></h1>
+
+    <form th:action="@{/actividades}" th:object="${actividad}" method="post">
+        <!-- Campo oculto para el ID de la actividad (necesario para actualización) -->
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" required />
+        </div>
+        <div>
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" th:field="*{descripcion}" required></textarea>
+        </div>
+        <div>
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" th:field="*{fecha}" required />
+        </div>
+
+        <!-- Selección de Sección -->
+        <div>
+            <label for="seccion">Sección:</label>
+            <select id="seccion" th:field="*{seccion.id}" required>
+                <option th:each="seccion : ${secciones}" 
+                        th:value="${seccion.id}" 
+                        th:text="${seccion.nombre}"></option>
+            </select>
+        </div>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

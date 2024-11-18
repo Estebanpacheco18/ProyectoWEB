@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${estudiante.id == null ? 'Crear Estudiante' : 'Editar Estudiante'}"></title>
+</head>
+<body>
+    <h1 th:text="${estudiante.id == null ? 'Crear Estudiante' : 'Editar Estudiante'}"></h1>
+
+    <form th:action="@{/estudiantes}" th:object="${estudiante}" method="post">
+        <!-- Campo oculto para ID -->
+        <input type="hidden" th:field="*{id}" />
+    
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" required />
+        </div>
+        <div>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" th:field="*{edad}" required />
+        </div>
+        <div>
+            <label for="nivel">Nivel:</label>
+            <input type="text" id="nivel" th:field="*{nivel}" required />
+        </div>
+
+        <!-- Selección de Sección -->
+        <div>
+            <label for="seccion">Sección:</label>
+            <select id="seccion" th:field="*{seccion}" required>
+                <option th:each="seccion : ${secciones}" 
+                        th:value="${seccion.nombre}" 
+                        th:text="${seccion.nombre}"></option>
+            </select>
+        </div>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

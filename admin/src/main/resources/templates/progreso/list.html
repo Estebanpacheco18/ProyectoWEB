@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Progresos</title>
+</head>
+<body>
+    <h1>Lista de Progresos de Estudiantes</h1>
+    <a href="/progreso/nuevo">Nuevo Progreso</a>
+
+    <!-- Filtro por Trimestre -->
+    <form th:action="@{/progreso}" method="get">
+        <label for="trimestre">Trimestre:</label>
+        <select name="trimestre" id="trimestre">
+            <option value="">Seleccione un trimestre</option>
+            <option value="Primer Trimestre" th:selected="${trimestre == 'Primer Trimestre'}">Primer Trimestre</option>
+            <option value="Segundo Trimestre" th:selected="${trimestre == 'Segundo Trimestre'}">Segundo Trimestre</option>
+            <option value="Tercer Trimestre" th:selected="${trimestre == 'Tercer Trimestre'}">Tercer Trimestre</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <!-- Tabla de Progresos -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Trimestre</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Nota 5</th>
+                <th>Nota 6</th>
+                <th>Nota 7</th>
+                <th>Nota 8</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="progreso : ${progresos}">
+                <td th:text="${progreso.estudiante.nombre}"></td>
+                <td th:text="${progreso.trimestre}"></td>
+                <td th:text="${progreso.nota.nota1}"></td>
+                <td th:text="${progreso.nota.nota2}"></td>
+                <td th:text="${progreso.nota.nota3}"></td>
+                <td th:text="${progreso.nota.nota4}"></td>
+                <td th:text="${progreso.nota.nota5}"></td>
+                <td th:text="${progreso.nota.nota6}"></td>
+                <td th:text="${progreso.nota.nota7}"></td>
+                <td th:text="${progreso.nota.nota8}"></td>
+                <td>
+                    <a th:href="@{/progreso/editar/{id}(id=${progreso.id})}">Editar</a>
+                    <a th:href="@{/progreso/eliminar/{id}(id=${progreso.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Progreso</title>
+</head>
+<body>
+    <h1>Formulario de Progreso del Estudiante</h1>
+
+    <!-- Si el progreso tiene un ID (es una edición), usar la acción de edición -->
+    <form th:action="@{${progreso.id} != null ? '/progreso/editar/' + ${progreso.id} : '/progreso'}"
+          th:object="${progreso}" method="post">
+        
+        <!-- Campo oculto para el ID del Progreso (solo para edición) -->
+        <input type="hidden" th:field="*{id}" />
+        
+        <label for="estudiante">Estudiante:</label>
+        <select th:field="*{estudiante}" required>
+            <option value="" disabled selected>Seleccione un estudiante</option>
+            <option th:each="estudiante : ${estudiantes}" th:value="${estudiante.id}" th:text="${estudiante.nombre}"></option>
+        </select><br><br>
+
+        <label for="trimestre">Trimestre:</label>
+        <select th:field="*{trimestre}" required>
+            <option value="Primer Trimestre">Primer Trimestre</option>
+            <option value="Segundo Trimestre">Segundo Trimestre</option>
+            <option value="Tercer Trimestre">Tercer Trimestre</option>
+        </select><br><br>
+
+        <h3>Notas</h3>
+        <div>
+            <label for="nota1">Nota 1:</label>
+            <input type="number" th:field="*{nota.nota1}"><br>
+
+            <label for="nota2">Nota 2:</label>
+            <input type="number" th:field="*{nota.nota2}"><br>
+
+            <label for="nota3">Nota 3:</label>
+            <input type="number" th:field="*{nota.nota3}"><br>
+
+            <label for="nota4">Nota 4:</label>
+            <input type="number" th:field="*{nota.nota4}"><br>
+
+            <label for="nota5">Nota 5:</label>
+            <input type="number" th:field="*{nota.nota5}"><br>
+
+            <label for="nota6">Nota 6:</label>
+            <input type="number" th:field="*{nota.nota6}"><br>
+
+            <label for="nota7">Nota 7:</label>
+            <input type="number" th:field="*{nota.nota7}"><br>
+
+            <label for="nota8">Nota 8:</label>
+            <input type="number" th:field="*{nota.nota8}"><br>
+        </div>
+
+        <button type="submit">Guardar Progreso</button>
+    </form>
+
+    <br>
+    <a href="/progreso">Volver al listado de progresos</a>
+</body>
+</html>
